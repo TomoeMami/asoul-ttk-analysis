@@ -4,7 +4,7 @@
 name: Update TTK
 
 on: 
-  #push:
+  push:
 
 jobs:
   deploy:
