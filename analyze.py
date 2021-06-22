@@ -30,6 +30,7 @@ def main():
     totalreplyers = all_data_frame.drop_duplicates(subset=['reply_name'])
     totalreplys = len(all_data_frame)
     loc=all_data_frame['reply_name'].value_counts()
+    
     loc20=loc[:20]
     loc10=loc[:10].keys()
     loc10d=loc[:10]
@@ -39,6 +40,11 @@ def main():
         f.write('# '+timedate+'节奏分析\n\n')
         f.write('> # **本文件最后更新于'+str(lastsave)+'** \n\n')
         f.write('本次节奏，共有 **'+str(len(totalreplyers))+'** 人参与，发表了 **'+str(totalreplys)+'** 个回复。\n\n\n')
+        f.write('# 按照回复次数进行划分，与人数的对应关系如下表所示：\n\n')
+        loccount = loc.value_counts(bins=10)
+        loccount.name = '人数'
+        loccount.index.name = '回复次数'
+        f.write(loccount.to_markdown()+'\n\n')
         f.write('# 其中，最活跃的前20人回复次数如下表所示：\n\n')
         loc20.name = '回复次数'
         loc20.index.name = '昵称'
