@@ -96,11 +96,11 @@ def main():
         f.write('## 本次数据统计的采样来源：'+'\n\n')
         for thread in threads:
             if(thread['mode'] == 'repost' or thread['mode'] == 'post'):
-                f.write('> https://t.bilibili.com/'+str(thread['oid'])+'\n')
+                f.write(' https://t.bilibili.com/'+str(thread['oid'])+'\n')
             elif(thread['mode'] == 'cv'):
-                f.write('> https://www.bilibili.com/read/cv'+str(thread['oid'])+'\n')
+                f.write(' https://www.bilibili.com/read/cv'+str(thread['oid'])+'\n')
             elif(thread['mode'] == 'av'):
-                f.write('> https://www.bilibili.com/video/av'+str(thread['oid'])+'\n')
+                f.write(' https://www.bilibili.com/video/av'+str(thread['oid'])+'\n')
 
         
 
