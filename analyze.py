@@ -31,9 +31,9 @@ def main():
     totalreplys = len(all_data_frame)
     loc=all_data_frame['reply_name'].value_counts()
     
-    loc20=loc[:20]
-    loc10=loc[:10].keys()
-    loc10d=loc[:10]
+    loc40=loc[:40]
+    loc20=loc[:20].keys()
+    loc20d=loc[:20]
     lastsave=time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()+28800))
 
     with open((file_dir+'【'+timedate+'节奏分析】.md').encode('utf-8'),'w',encoding='utf-8') as f:
@@ -45,35 +45,35 @@ def main():
         loccount.name = '人数'
         loccount.index.name = '回复次数'
         f.write(loccount.to_markdown()+'\n\n')
-        f.write('# 其中，最活跃的前20人回复次数如下表所示：\n\n')
-        loc20.name = '回复次数'
-        loc20.index.name = '昵称'
-        f.write(loc20.to_markdown()+'\n\n')
-        f.write('## 按照点赞数排序，这20人的回复中，被点赞前十条分别是： \n\n')
-        top20 = all_data_frame.loc[all_data_frame['reply_name'].isin(loc20.index)]
-        top20likes = top20.sort_values(by='reply_like',ascending=False)
-        top20likes10 = top20likes[:10]
-        for k in range(10):
-            f.write('  **'+top20likes10['reply_name'].iloc[k]+'**  发表于  '+str(top20likes10['reply_time'].iloc[k])+' **'+str(top20likes10['reply_like'].iloc[k])+'** 赞：' +'\n\n')
-            f.write('<blockquote> '+top20likes10['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
+        f.write('# 其中，最活跃的前40人回复次数如下表所示：\n\n')
+        loc40.name = '回复次数'
+        loc40.index.name = '昵称'
+        f.write(loc40.to_markdown()+'\n\n')
+        f.write('## 按照点赞数排序，这40人的回复中，被点赞前二十条分别是： \n\n')
+        top40 = all_data_frame.loc[all_data_frame['reply_name'].isin(loc40.index)]
+        top40likes = top40.sort_values(by='reply_like',ascending=False)
+        top40likes20 = top40likes[:20]
+        for k in range(20):
+            f.write('  **'+top40likes20['reply_name'].iloc[k]+'**  发表于  '+str(top40likes20['reply_time'].iloc[k])+' **'+str(top40likes20['reply_like'].iloc[k])+'** 赞：' +'\n\n')
+            f.write('<blockquote> '+top40likes20['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
             f.write('-----\n\n')
-        f.write('# 接下来，让我们看看前十名回复者的具体动态：\n\n')
-        for i in range(10):
-            person=all_data_frame.loc[all_data_frame['reply_name']==loc10[i]]
+        f.write('# 接下来，让我们看看前二十名回复者的具体动态：\n\n')
+        for i in range(20):
+            person=all_data_frame.loc[all_data_frame['reply_name']==loc20[i]]
             plikes = person.sort_values(by='reply_like',ascending=False)
             plikes5 = plikes[:5]
-            f.write('## 第'+str(i+1)+'名： **'+loc10[i]+'** \n\n')
-            f.write('TA一共回复了 **'+str(loc10d[i])+'** 条消息，在 **'+str(len(totalreplyers))+'** 人中勇夺第 **'+str(i+1)+'** ！ \n\n')
+            f.write('## 第'+str(i+1)+'名： **'+loc20[i]+'** \n\n')
+            f.write('TA一共回复了 **'+str(loc20d[i])+'** 条消息，在 **'+str(len(totalreplyers))+'** 人中勇夺第 **'+str(i+1)+'** ！ \n\n')
             f.write('### 按照点赞数排序，TA回复被点赞前五条分别是： \n\n')
             for k in range(5):
                 f.write(' 发表于'+str(plikes5['reply_time'].iloc[k])+' **'+str(plikes5['reply_like'].iloc[k])+'** 赞：' +'\n\n')
                 f.write('<blockquote> '+plikes5['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
                 f.write('-----\n\n')
-        f.write('# 最后，让我们来看一下点赞前十的评论：\n\n')   
-        ltop10 = all_data_frame.sort_values(by='reply_like',ascending=False)[:10]
-        for k in range(10):
-            f.write('  **'+ltop10['reply_name'].iloc[k]+'**  发表于  '+str(ltop10['reply_time'].iloc[k])+'  **'+str(ltop10['reply_like'].iloc[k])+'** 赞：' +'\n')
-            f.write('<blockquote> '+ltop10['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
+        f.write('# 最后，让我们来看一下点赞前二十的评论：\n\n')   
+        ltop20 = all_data_frame.sort_values(by='reply_like',ascending=False)[:20]
+        for k in range(20):
+            f.write('  **'+ltop20['reply_name'].iloc[k]+'**  发表于  '+str(ltop20['reply_time'].iloc[k])+'  **'+str(ltop20['reply_like'].iloc[k])+'** 赞：' +'\n')
+            f.write('<blockquote> '+ltop20['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
             f.write('-----\n\n')
         f.write('# 特别颁发的奖项\n\n')  
         f.write('## 深入讨论奖：\n\n') 
