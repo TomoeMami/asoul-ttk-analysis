@@ -35,7 +35,7 @@ def main():
     loc10d=loc[:10]
     lastsave=time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()+28800))
 
-    with open((file_dir+timedate+'节奏分析.md').encode('utf-8'),'w',encoding='utf-8') as f:
+    with open((file_dir+'【'+timedate+'节奏分析】.md').encode('utf-8'),'w',encoding='utf-8') as f:
         f.write('# '+timedate+'\n\n')
         f.write('> ## **本文件最后更新于'+str(lastsave)+'** \n\n')
         f.write('本次节奏，共有 **'+str(len(totalreplyers))+'** 人参与，发表了 **'+str(totalreplys)+'** 个回复。\n\n')
