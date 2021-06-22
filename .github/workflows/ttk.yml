@@ -4,7 +4,7 @@
 name: Update TTK
 
 on: 
-  #push:
+  push:
 
 jobs:
   deploy:
@@ -23,7 +23,6 @@ jobs:
         pip install setuptools wheel twine bs4 requests tabulate pandas
     - name: Run
       run: |
-        python getBilibiliComm.py
         python analyze.py
     - name: commit
       env:
