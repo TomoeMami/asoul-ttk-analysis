@@ -36,7 +36,7 @@ def main():
     lastsave=time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()+28800))
 
     with open((file_dir+'【'+timedate+'节奏分析】.md').encode('utf-8'),'w',encoding='utf-8') as f:
-        f.write('# '+timedate+'\n\n')
+        f.write('# '+timedate+'节奏分析\n\n')
         f.write('> ## **本文件最后更新于'+str(lastsave)+'** \n\n')
         f.write('本次节奏，共有 **'+str(len(totalreplyers))+'** 人参与，发表了 **'+str(totalreplys)+'** 个回复。\n\n\n')
         f.write('## 其中，最活跃的前20人回复次数如下表所示：\n\n')
@@ -50,7 +50,7 @@ def main():
         for k in range(10):
             f.write('  **'+top20likes10['reply_name'].iloc[k]+'**  发表于  '+str(top20likes10['reply_time'].iloc[k])+' **'+str(top20likes10['reply_like'].iloc[k])+'** 赞：' +'\n\n')
             f.write('<blockquote> '+top20likes10['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
-            f.write('-----')
+            f.write('-----\n\n')
         f.write('## 接下来，让我们看看前十名回复者的具体动态：\n\n')
         for i in range(10):
             person=all_data_frame.loc[all_data_frame['reply_name']==loc10[i]]
@@ -62,13 +62,13 @@ def main():
             for k in range(5):
                 f.write(' 发表于'+str(plikes5['reply_time'].iloc[k])+' **'+str(plikes5['reply_like'].iloc[k])+'** 赞：' +'\n\n')
                 f.write('<blockquote> '+plikes5['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
-                f.write('-----')
+                f.write('-----\n\n')
         f.write('## 最后，让我们来看一下点赞前十的评论：\n\n')   
         ltop10 = all_data_frame.sort_values(by='reply_like',ascending=False)[:10]
         for k in range(10):
             f.write('  **'+ltop10['reply_name'].iloc[k]+'**  发表于  '+str(ltop10['reply_time'].iloc[k])+'  **'+str(ltop10['reply_like'].iloc[k])+'** 赞：' +'\n')
             f.write('<blockquote> '+ltop10['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
-            f.write('-----')
+            f.write('-----\n\n')
         f.write('## 特别颁发的奖项\n\n')  
         f.write('### 深入讨论奖：\n\n') 
         f.write('在楼中楼里被他人回复最多次。\n\n') 
