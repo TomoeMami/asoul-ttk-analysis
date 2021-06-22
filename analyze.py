@@ -51,7 +51,6 @@ def main():
             f.write('  **'+top20likes10['reply_name'].iloc[k]+'**  发表于  '+str(top20likes10['reply_time'].iloc[k])+' **'+str(top20likes10['reply_like'].iloc[k])+'** 赞：' +'\n\n')
             f.write('<blockquote> '+top20likes10['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
             f.write('-----\n\n')
-        f.write('-----\n\n')
         f.write('# 接下来，让我们看看前十名回复者的具体动态：\n\n')
         for i in range(10):
             person=all_data_frame.loc[all_data_frame['reply_name']==loc10[i]]
