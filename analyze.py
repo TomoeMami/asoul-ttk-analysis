@@ -48,7 +48,7 @@ def main():
         top20likes = top20.sort_values(by='reply_like',ascending=False)
         top20likes10 = top20likes[:10]
         for k in range(10):
-            f.write('<blockquote><bold>'+top20likes10['reply_name'].iloc[k]+'</bold> 发表于'+str(top20likes10['reply_time'].iloc[k])+'<bold>'+str(top20likes10['reply_like'].iloc[k])+'</bold>赞：' +'\n')
+            f.write('<blockquote><bold>'+top20likes10['reply_name'].iloc[k]+'</bold> 发表于'+str(top20likes10['reply_time'].iloc[k])+'<bold>'+str(top20likes10['reply_like'].iloc[k])+'</bold>赞：' +'\n\n')
             f.write(top20likes10['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
         f.write('## 接下来，让我们看看前十名回复者的具体动态：\n\n')
         for i in range(10):
@@ -59,12 +59,12 @@ def main():
             f.write('TA一共回复了 **'+str(loc10d[i])+'** 条消息，在 **'+str(len(totalreplyers))+'** 人中勇夺第 **'+str(i+1)+'** ！ \n\n')
             f.write('#### 按照点赞数排序，TA回复点赞前五条分别是： \n\n')
             for k in range(5):
-                f.write('<blockquote>发表于'+str(plikes5['reply_time'].iloc[k])+'，<bold>'+str(plikes5['reply_like'].iloc[k])+'</bold>赞：' +'\n')
+                f.write('<blockquote>发表于'+str(plikes5['reply_time'].iloc[k])+'，<bold>'+str(plikes5['reply_like'].iloc[k])+'</bold>赞：' +'\n\n')
                 f.write(' '+plikes5['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
         f.write('## 最后，让我们来看一下点赞前十的评论：\n\n')   
         ltop10 = all_data_frame.sort_values(by='reply_like',ascending=False)[:10]
         for k in range(10):
-            f.write('<blockquote><bold>'+ltop10['reply_name'].iloc[k]+'</bold>发表于'+str(ltop10['reply_time'].iloc[k])+'，<bold>'+str(ltop10['reply_like'].iloc[k])+'</bold>赞：' +'\n')
+            f.write('<blockquote><bold>'+ltop10['reply_name'].iloc[k]+'</bold>发表于'+str(ltop10['reply_time'].iloc[k])+'，<bold>'+str(ltop10['reply_like'].iloc[k])+'</bold>赞：' +'\n\n')
             f.write(' '+ltop10['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
         f.write('## 特别颁发的奖项\n\n')  
         f.write('### 深入讨论奖：\n\n') 
@@ -93,11 +93,11 @@ def main():
         f.write('## 本次数据统计的采样来源：'+'\n\n<blockquote>')
         for thread in threads:
             if(thread['mode'] == 'repost' or thread['mode'] == 'post'):
-                f.write('https://t.bilibili.com/'+str(thread['oid'])+'\n')
+                f.write('https://t.bilibili.com/'+str(thread['oid'])+'\n\n')
             elif(thread['mode'] == 'cv'):
-                f.write('https://www.bilibili.com/read/cv'+str(thread['oid'])+'\n')
+                f.write('https://www.bilibili.com/read/cv'+str(thread['oid'])+'\n\n')
             elif(thread['mode'] == 'av'):
-                f.write('https://www.bilibili.com/video/av'+str(thread['oid'])+'\n')
+                f.write('https://www.bilibili.com/video/av'+str(thread['oid'])+'\n\n')
         f.write('</blockquote>\n')
         
 
