@@ -58,7 +58,7 @@ def main():
             plikes5 = plikes[:5]
             f.write('## 第'+str(i+1)+'名： **'+loc10[i]+'** \n\n')
             f.write('TA一共回复了 **'+str(loc10d[i])+'** 条消息，在 **'+str(len(totalreplyers))+'** 人中勇夺第 **'+str(i+1)+'** ！ \n\n')
-            f.write('### 按照点赞数排序，TA回复点赞前五条分别是： \n\n')
+            f.write('### 按照点赞数排序，TA回复被点赞前五条分别是： \n\n')
             for k in range(5):
                 f.write(' 发表于'+str(plikes5['reply_time'].iloc[k])+' **'+str(plikes5['reply_like'].iloc[k])+'** 赞：' +'\n\n')
                 f.write('<blockquote> '+plikes5['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
@@ -78,6 +78,7 @@ def main():
         rrstar.name = '回复次数'
         rrstar.index.name = '昵称'
         f.write(rrstar.to_markdown()+'\n\n')    
+        f.write('-----\n\n')
         f.write('## 你说EMOJI呢奖：\n\n') 
         f.write('被使用最多次的表情。\n\n') 
         emotes = all_data_frame[all_data_frame['reply_content'].str.contains('\[.+?\]')]
@@ -86,6 +87,7 @@ def main():
         emote.name = '使用次数'
         emote.index.name = '表情名称'
         f.write(emote.to_markdown()+'\n\n')   
+        f.write('-----\n\n')
         f.write('## 谈笑风生奖：\n\n') 
         f.write('发送带表情的评论最多条数。\n\n') 
         pemotes = all_data_frame[all_data_frame['reply_content'].str.contains('\[.+?\]')]
@@ -93,6 +95,7 @@ def main():
         pemote.name = '带表情评论条数'
         pemote.index.name = '昵称'
         f.write(pemote.to_markdown()+'\n\n')   
+        f.write('-----\n\n')
         f.write('# 本次数据统计的采样来源：'+'\n\n')
         for thread in threads:
             if(thread['mode'] == 'repost' or thread['mode'] == 'post'):
