@@ -83,9 +83,9 @@ def main():
         page_count = math.ceil(int(count) / 20)  # 评论总页数
         comment_list = []
         #追加模式
-        for pn in range(1, page_count + 1):
+        for pn in range(4, page_count + 1):
             comment_url = 'https://api.bilibili.com/x/v2/reply?pn=%s&type=%s&oid=%s&sort=1' % (pn, gettype,oid)
-            time.sleep(1)
+            time.sleep(2)
             response = requests.get(comment_url, headers=headers)
             if('data' in response.json().keys()):
                 replies = response.json()['data']['replies']
@@ -108,7 +108,7 @@ def main():
                         page_rcount = math.ceil(int(rcount) / 10)  # 回复评论总页数
                         root = reply['rpid']
                         for reply_pn in range(1, page_rcount + 1):
-                            time.sleep(1)
+                            time.sleep(2)
                             reply_url = 'https://api.bilibili.com/x/v2/reply/reply?&pn=%s&type=%s&oid=%s&ps=10&root=%s' % (reply_pn,gettype, oid, root)
                             response = requests.get(reply_url, headers=headers)
                             if('data' in response.json().keys()):
@@ -130,20 +130,11 @@ def main():
                                         comment_list.append(reply_info)
                     filedir = './'+timedate+'/'
                     mkdir(filedir)
-                    if(pn//41> 0):
-                        save_path=filedir+str(threads[i]['oid'])+'-'+str(pn//40+1)+'.json'
-                    else:
-                        save_path=filedir+str(threads[i]['oid'])+'.json'
+                    save_path=filedir+str(threads[i]['oid'])+'-2.json'
                     with open(save_path, "w", encoding='utf-8') as f:
                         json.dump(comment_list, f, ensure_ascii=False, indent=4, separators=(',', ':'))
-                    print(pn)
-                    if(pn%40 == 0):
-                        comment_list = []
-                    if(pn%20 == 0):
-                        time.sleep(5)
+                    with open('./pn.txt', "w", encoding='utf-8') as f:
+                        f.write('pn='+str(pn)+'\n')
             
-
-
-
 if __name__ == "__main__":
     main()
