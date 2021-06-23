@@ -83,7 +83,7 @@ def main():
         page_count = math.ceil(int(count) / 20)  # 评论总页数
         comment_list = []
         #追加模式
-        for pn in range(4, page_count + 1):
+        for pn in range(317, page_count + 1):
             comment_url = 'https://api.bilibili.com/x/v2/reply?pn=%s&type=%s&oid=%s&sort=1' % (pn, gettype,oid)
             time.sleep(2)
             response = requests.get(comment_url, headers=headers)
@@ -130,7 +130,7 @@ def main():
                                         comment_list.append(reply_info)
                     filedir = './'+timedate+'/'
                     mkdir(filedir)
-                    save_path=filedir+str(threads[i]['oid'])+'-2.json'
+                    save_path=filedir+str(threads[i]['oid'])+'-3.json'
                     with open(save_path, "w", encoding='utf-8') as f:
                         json.dump(comment_list, f, ensure_ascii=False, indent=4, separators=(',', ':'))
                     with open('./pn.txt', "w", encoding='utf-8') as f:
