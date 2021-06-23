@@ -61,13 +61,15 @@ def main():
     #以下区域每次使用时更新，复制粘贴
 
     timedate='2021-06-08'
-    threads = [{'oid':533990865853845019,'mode':'repost'},
-    {'oid':11637363,'mode':'cv'},
-    {'oid':11634943,'mode':'cv'}
+    threads = [{'oid':11637363,'mode':'cv'}
     ]
 
     #复制粘贴到此为止
-
+    '''
+    ,
+    {'oid':11637363,'mode':'cv'},
+    {'oid':11634943,'mode':'cv'}
+    '''
 
     #cv的oid是cv后的数字，无转发动态的oid是地址栏数字。
     for i in range(len(threads)):
@@ -83,7 +85,7 @@ def main():
         page_count = math.ceil(int(count) / 20)  # 评论总页数
         comment_list = []
         #追加模式
-        for pn in range(317, page_count + 1):
+        for pn in range(206, page_count + 1):
             comment_url = 'https://api.bilibili.com/x/v2/reply?pn=%s&type=%s&oid=%s&sort=1' % (pn, gettype,oid)
             time.sleep(2)
             response = requests.get(comment_url, headers=headers)
@@ -130,7 +132,7 @@ def main():
                                         comment_list.append(reply_info)
                     filedir = './'+timedate+'/'
                     mkdir(filedir)
-                    save_path=filedir+str(threads[i]['oid'])+'-3.json'
+                    save_path=filedir+str(threads[i]['oid'])+'-4.json' #每中断一次更新一次
                     with open(save_path, "w", encoding='utf-8') as f:
                         json.dump(comment_list, f, ensure_ascii=False, indent=4, separators=(',', ':'))
                     with open('./pn.txt', "w", encoding='utf-8') as f:

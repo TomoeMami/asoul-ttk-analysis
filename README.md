@@ -1,6 +1,6 @@
 # 简介
 
-本REPO的目的是输入目标bilibili动态、文章、视频链接，即可借助GitHub Action（考虑到爬取评论所需时间，也许无法利用GithubAction进行远程的爬取）自动分析评论区并输出标准化节奏分析报告。
+本REPO的目的是输入目标bilibili动态、文章、视频链接，即可借助GitHub Action（考虑到爬取评论所需时间，无法利用GithubAction进行远程的爬取）自动分析评论区并输出标准化节奏分析报告。
 
 # 成果
 
