@@ -60,12 +60,10 @@ def main():
 
     #以下区域每次使用时更新，复制粘贴
 
-    timedate='2021-06-22'
-    threads = [{'oid':539081359875657340,'mode':'post'},
-    {'oid':539057329536673674,'mode':'post'},
-    {'oid':11834829,'mode':'cv'},
-    {'oid':539085994140151257,'mode':'repost'},
-    {'oid':539010780672508914,'mode':'post'}
+    timedate='2021-06-08'
+    threads = [{'oid':533990865853845019,'mode':'repost'},
+    {'oid':11637363,'mode':'cv'},
+    {'oid':11634943,'mode':'cv'}
     ]
 
     #复制粘贴到此为止
@@ -87,6 +85,7 @@ def main():
         #追加模式
         for pn in range(1, page_count + 1):
             comment_url = 'https://api.bilibili.com/x/v2/reply?pn=%s&type=%s&oid=%s&sort=1' % (pn, gettype,oid)
+            time.sleep(1)
             response = requests.get(comment_url, headers=headers)
             if('data' in response.json().keys()):
                 replies = response.json()['data']['replies']
@@ -131,11 +130,17 @@ def main():
                                         comment_list.append(reply_info)
                     filedir = './'+timedate+'/'
                     mkdir(filedir)
-                    if(pn//40 >= 1):
+                    if(pn//41> 0):
                         save_path=filedir+str(threads[i]['oid'])+'-'+str(pn//40+1)+'.json'
+                    else:
+                        save_path=filedir+str(threads[i]['oid'])+'.json'
                     with open(save_path, "w", encoding='utf-8') as f:
                         json.dump(comment_list, f, ensure_ascii=False, indent=4, separators=(',', ':'))
-                    # comment_list = [] #改为append模式之后需要及时清空
+                    print(pn)
+                    if(pn%40 == 0):
+                        comment_list = []
+                    if(pn%20 == 0):
+                        time.sleep(5)
             
 
 
