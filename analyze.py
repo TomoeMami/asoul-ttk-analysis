@@ -76,7 +76,7 @@ def main():
             f.write('<blockquote> '+ltop20['reply_content'].iloc[k]+ '</blockquote>\n\n\n')
             f.write('-----\n\n')
         f.write('# 特别颁发的奖项\n\n')  
-        f.write('## 深入讨论奖：\n\n') 
+        f.write('## 抛砖引砖奖：\n\n') 
         f.write('在楼中楼里被他人回复最多次。\n\n') 
         rreply = all_data_frame[all_data_frame['reply_content'].str.contains('回复 @.+ ?')]
         rrstars = rreply['reply_content'].str.extract(r'(@.+:)')
@@ -85,7 +85,7 @@ def main():
         rrstar.index.name = '昵称'
         f.write(rrstar.to_markdown()+'\n\n')    
         f.write('-----\n\n')
-        f.write('## 你说EMOJI呢奖：\n\n') 
+        f.write('## 你说你EMOJI呢奖：\n\n') 
         f.write('被使用最多次的B站表情（不含emoji）。\n\n') 
         emotes = all_data_frame[all_data_frame['reply_content'].str.contains('\[.+?\]')]
         emotes = emotes['reply_content'].str.extract(r'(\[.+?\])')
