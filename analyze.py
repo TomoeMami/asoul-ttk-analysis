@@ -6,11 +6,13 @@ import os
 
 #以下区域每次使用时更新，复制粘贴
 
-timedate='2021-06-08'
-threads = [{'oid':533990865853845019,'mode':'post'},
-{'oid':11637363,'mode':'cv'},
-{'oid':11634943,'mode':'cv'},
-{'oid':11644047,'mode':'cv'}
+timedate='2021-06-22'
+threads = [
+{'oid':11834829,'mode':'cv'},
+{'oid':539085994140151257,'mode':'repost'},
+{'oid':539081359875657340,'mode':'post'},
+{'oid':539057329536673674,'mode':'post'},
+{'oid':539010780672508914,'mode':'post'}
 ]
 
 #复制粘贴到此为止
@@ -84,7 +86,7 @@ def main():
         f.write(rrstar.to_markdown()+'\n\n')    
         f.write('-----\n\n')
         f.write('## 你说EMOJI呢奖：\n\n') 
-        f.write('被使用最多次的表情。\n\n') 
+        f.write('被使用最多次的B站表情（不含emoji）。\n\n') 
         emotes = all_data_frame[all_data_frame['reply_content'].str.contains('\[.+?\]')]
         emotes = emotes['reply_content'].str.extract(r'(\[.+?\])')
         emote = emotes.value_counts()[:10]
@@ -114,3 +116,15 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+'''
+timedate='2021-06-22'
+threads = [
+{'oid':11834829,'mode':'cv'},
+{'oid':539085994140151257,'mode':'repost'},
+{'oid':539081359875657340,'mode':'post'},
+{'oid':539057329536673674,'mode':'post'},
+{'oid':539010780672508914,'mode':'post'}
+]
+
+'''
